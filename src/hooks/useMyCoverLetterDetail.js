@@ -9,13 +9,21 @@ const useMyCoverLetterDetail = (id) => {
   useEffect(() => {
     if (!id) return;
     setLoading(true);
-    api.get(`/my-cover-letters/${id}`)
+    api.get(`/user-cover-letters/${id}`)
       .then(res => {
-        // created_at → date로 변환, items 그대로
         const data = res.data;
         setCoverLetter({
-          ...data,
-          date: new Date(data.created_at).toISOString().split('T')[0],
+          id: data.id,
+          title: data.title,
+          date: data.created_at ? new Date(data.created_at).toISOString().split('T')[0] : '',
+          updated_at: data.updated_at,
+          items: (data.items || []).map(it => ({
+            id: it.id,
+            question: it.question,
+            char_limit: it.char_limit ?? null,
+            content: it.content,
+            number: it.number,
+          })),
         });
         setLoading(false);
       })

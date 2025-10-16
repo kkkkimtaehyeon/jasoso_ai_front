@@ -13,7 +13,7 @@ const usePatchMyCoverLetter = () => {
         content: item.content,
       })),
     };
-    const res = await api.patch(`/my-cover-letters/${id}`, body);
+    const res = await api.patch(`/v2/user-cover-letters/${id}`, body);
     return res.data;
   };
   return { patchCoverLetter };

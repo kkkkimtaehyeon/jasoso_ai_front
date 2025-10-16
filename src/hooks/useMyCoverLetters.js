@@ -7,11 +7,12 @@ const useMyCoverLetters = () => {
 
     useEffect(() => {
         setLoading(true);
-        api.get("/my-cover-letters")
+        api.get("/user-cover-letters")
             .then(res => {
-                const processed = res.data.map(cl => ({
-                    ...cl,
-                    date: new Date(cl.created_at).toISOString().split("T")[0],
+                const processed = (res.data || []).map(cl => ({
+                    id: cl.id,
+                    title: cl.title,
+                    date: cl.created_at ? new Date(cl.created_at).toISOString().split("T")[0] : '',
                 }));
                 setMyCoverLetters(processed);
                 setLoading(false);

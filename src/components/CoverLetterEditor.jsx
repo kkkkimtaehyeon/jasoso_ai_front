@@ -112,9 +112,7 @@ const CoverLetterEditor = ({
                             </p>
                         )}
                         <div className="flex justify-between items-center mt-2">
-                        <span className="text-sm text-slate-500">
-                            글자 수 : {isEditing ? editingContent.length : (currentItem?.content?.length || 0)} / {currentItem?.char_limit || currentItem?.characterLimit || currentItem?.wordLimit || 0}
-                        </span>
+                        
                             {isEditing && (
                                 <button
                                     type="button"

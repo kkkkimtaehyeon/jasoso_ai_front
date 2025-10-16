@@ -6,13 +6,13 @@ import usePostMyCoverLetter from '../hooks/usePostMyCoverLetter.js';
 const CoverLetterUpload = ({ onUpload, onClose }) => {
   const [title, setTitle] = useState('')
   const [items, setItems] = useState([
-    { question: '', content: '', char_limit: 1500 }
+    { question: '', content: ''}
   ])
   const { postCoverLetter } = usePostMyCoverLetter();
   const [loading, setLoading] = useState(false);
 
   const addItem = () => {
-    setItems(prev => [...prev, { question: '', content: '', char_limit: 1500 }])
+    setItems(prev => [...prev, { question: '', content: ''}])
   }
 
   const removeItem = (index) => {
@@ -49,7 +49,6 @@ const CoverLetterUpload = ({ onUpload, onClose }) => {
         title: title.trim(),
         items: validItems.map(item => ({
           question: item.question,
-          char_limit: Number(item.char_limit) || 1500,
           content: item.content,
         }))
       });
@@ -114,16 +113,6 @@ const CoverLetterUpload = ({ onUpload, onClose }) => {
                       />
                     </div>
                     <div className="field-group">
-                      <label>글자수 제한</label>
-                      <input
-                        type="number"
-                        value={item.char_limit}
-                        onChange={(e) => updateItem(index, 'char_limit', e.target.value)}
-                        min="100"
-                        max="5000"
-                        step="50"
-                        required
-                      />
                     </div>
                     <div className="field-group">
                       <label>내용</label>
