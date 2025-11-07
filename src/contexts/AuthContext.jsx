@@ -30,7 +30,7 @@ export const AuthProvider = ({children, setIsLoggedIn}) => {
     const googleLogin = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
             // 토큰을 FastAPI 백엔드로 전송
-            const res = await api.post('/auth/google/login', {token: tokenResponse.access_token});
+            const res = await api.post('/api/auth/google/login', {token: tokenResponse.access_token});
             const loggedUser = await res.data;
             setUser(loggedUser);
             setIsLoggedIn(true);
