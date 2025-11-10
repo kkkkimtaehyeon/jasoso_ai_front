@@ -367,6 +367,10 @@ const AICoverLetter = () => {
 
   const handleGenerate = async () => {
     if (!jobUrl.trim()) {
+      if (!jobUrl.startsWith("https://www.wanted.co.kr") || !jobUrl.startsWith("https://zighang.com")) {
+        alert('현재 원티드(www.wanted.co.kr)와 직행(zighang.com) 채용공고 URL만 지원됩니다.')
+        return
+      }
       alert('채용공고 URL을 입력해주세요.')
       return
     }
@@ -491,7 +495,7 @@ const AICoverLetter = () => {
                 <div className="form-group">
                   <label htmlFor="jobUrl">
                     <LinkIcon size={16} />
-                    채용공고 URL
+                    채용공고 URL (현재 원티드와, 직행만 지원됩니다.)
                   </label>
                   <input
                       type="url"
